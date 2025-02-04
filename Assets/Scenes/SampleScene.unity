@@ -154,7 +154,6 @@ MonoBehaviour:
   blockGenerator: {fileID: 1451910402}
   cancelClick: 0
   movingBlocks: []
-  lockStatusCounter: 0
   waitForShuffle: 0
   shuffleWaitAmount: 3
 --- !u!4 &69502284
@@ -447,7 +446,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 6.468487
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -914,7 +913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1935364678}
-  cam: {fileID: 0}
+  cam: {fileID: 1965308019}
   blockReferences:
   - {fileID: 879960889558587949, guid: 5685f769d80f3da40ae8994d5cc86016, type: 3}
   - {fileID: 2211713645583844893, guid: 32f30dcf186a5134f8e0b04e9ac3be09, type: 3}
@@ -922,12 +921,12 @@ MonoBehaviour:
   - {fileID: 5223248704848802921, guid: a78adb2f4c147a6479b5ffd9ae04dff4, type: 3}
   - {fileID: 2936818126231888928, guid: fea70e258b472374d83d78c3ac11cb8e, type: 3}
   - {fileID: 5230823748956691185, guid: 9479e087a0c6f304cb31b1281027eaa1, type: 3}
-  m: 8
-  n: 8
+  m: 5
+  n: 5
   a: 3
   b: 6
   c: 9
-  k: 1
+  k: 5
 --- !u!4 &1451910403
 Transform:
   m_ObjectHideFlags: 0
@@ -1013,7 +1012,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12
+    OrthographicSize: 6.468487
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

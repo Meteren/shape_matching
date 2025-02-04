@@ -50,7 +50,7 @@ public abstract class Block : MonoBehaviour
         {
                       
             ClearDestroyedGroupBlocks();
-
+            SetMultiplyFactor();
         }
         
     }
@@ -164,22 +164,26 @@ public abstract class Block : MonoBehaviour
         StartCoroutine(Move(originPosition,positionToMove,X,Y));
     }
 
-    private IEnumerator Move(Vector2 originPosition, Vector2 positionToMove,int newX, int newY)
+    private IEnumerator Move(Vector2 originPosition, Vector2 positionToMove, int newX, int newY)
     {
-        for(float i = 0; i < 1; i+=Time.deltaTime * moveSpeed)
+        float arrangedTime = 1f / moveSpeed;
+
+        for (float i = 0; i < 1; i += Time.unscaledDeltaTime / arrangedTime)
         {
+
             float posX = Mathf.Lerp(originPosition.x, positionToMove.x, i);
-            float posY = Mathf.Lerp(originPosition.y,positionToMove.y,i);
+            float posY = Mathf.Lerp(originPosition.y, positionToMove.y, i);
+
             transform.position = new Vector2(posX, posY);
             yield return null;
         }
+
         transform.position = positionToMove;
-        UpdatePlaceOnBoard(newX, newY);      
+        UpdatePlaceOnBoard(newX, newY);
         groupedBlocks.Clear();
         GetComponent<SpriteRenderer>().sortingOrder = GameManager.instance.blockGenerator.M - newX;
         isMoving = false;
         GameManager.instance.movingBlocks.Remove(this);
-              
     }
 
     public void UpdatePlaceOnBoard(int newX, int newY)
@@ -191,7 +195,8 @@ public abstract class Block : MonoBehaviour
 
     private void OnMouseDown()
     {   
-        UIController.instance.handleScore.IncrementScore(groupedBlocks.Count() * multiplyFactor);
+        UIController.instance.handleScore.IncrementScore(
+            groupedBlocks.Count() == 1 ? 0 : groupedBlocks.Count() * multiplyFactor);
         if(groupedBlocks.Count > 1 && !GameManager.instance.cancelClick && !GameManager.instance.waitForShuffle)
         {
             foreach (var block in groupedBlocks)
